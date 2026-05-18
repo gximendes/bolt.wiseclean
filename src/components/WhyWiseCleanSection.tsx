@@ -1,16 +1,10 @@
 import { motion, AnimatePresence } from "framer-motion";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import {
   FlaskConical,
   HeartPulse,
   Recycle,
   ChevronDown,
-  Phone,
-  Search,
-  Shield,
-  SprayCan,
-  Droplets,
-  Wind,
   ClipboardCheck,
 } from "lucide-react";
 import { whatsappUrl, WHATSAPP_MESSAGES } from "@/lib/constants";
@@ -38,17 +32,6 @@ const profiles = [
   { emoji: "👨‍👩‍👧", title: "Filhos com alergias", text: "Redução de alergénios comuns nos têxteis do lar. Um ambiente mais limpo começa nos estofos onde dormem e brincam." },
   { emoji: "🏃", title: "Odores e higiene ativa", text: "Transpiração intensa penetra nas fibras. A higienização bacteriológica elimina na profundidade — não mascara." },
   { emoji: "👴", title: "Conforto e cuidado em casa", text: "Serviço completo ao domicílio para quem merece higiene e conforto sem esforço." },
-];
-
-const steps = [
-  { icon: Phone, title: "Marcamos Consigo", text: "Resposta em menos de 1 hora via WhatsApp. Confirmamos data, hora e qualquer necessidade especial." },
-  { icon: Search, title: "Avaliação Técnica", text: "Avaliamos o estado do seu sofá, colchão ou tapete. Identificamos as zonas com maior acumulação." },
-  { icon: Shield, title: "Preparação Cuidada", text: "Seleccionamos os produtos certos para o seu tipo de tecido — seguros para a pele, crianças e animais." },
-  { icon: SprayCan, title: "Ativação em Profundidade", text: "Aplicamos um agente enzimático nas zonas com maior concentração orgânica e abrimos as fibras manualmente." },
-  { icon: Droplets, title: "Remoção em Profundidade", text: "Com equipamento profissional de injeção e extração a pressão controlada, removemos em profundidade ácaros, bactérias e agentes de odor acumulados nas fibras." },
-  { icon: Recycle, title: "Recolha Total da Água", text: "Toda a água é extraída e recolhida para tratamento certificado. Sem resíduos nem humidade escondida." },
-  { icon: Wind, title: "Secagem Acelerada", text: "Aceleramos a secagem com ventilação orientada. Em 2 a 4 horas pode voltar a usar o seu espaço." },
-  { icon: ClipboardCheck, title: "Follow-up a 45 Dias", text: "Inspecção final, relatório personalizado e follow-up automático aos 45 dias." },
 ];
 
 const seals = [
@@ -153,17 +136,7 @@ const SofaQuiz = () => {
 
 const WhyWiseCleanSection = () => {
   const [openProfile, setOpenProfile] = useState<string | null>(null);
-  const [openStep, setOpenStep] = useState<string | null>(null);
   const [openSeal, setOpenSeal] = useState<string | null>(null);
-
-  useEffect(() => {
-    if (window.location.hash === "#protocolo") {
-      setOpenStep("steps");
-      setTimeout(() => {
-        document.getElementById("protocolo")?.scrollIntoView({ behavior: "smooth" });
-      }, 100);
-    }
-  }, []);
 
   return (
     <section id="saude" className="py-24 lg:py-32 bg-background">
@@ -235,31 +208,6 @@ const WhyWiseCleanSection = () => {
               ))}
             </div>
           </AccordionItem>
-
-          <div id="protocolo">
-          <AccordionItem
-            title="Protocolo de 8 etapas"
-            open={openStep !== null}
-            onToggle={() => setOpenStep(openStep ? null : "steps")}
-          >
-            <div className="space-y-3">
-              {steps.map((s, i) => (
-                <div key={s.title} className="flex items-start gap-3">
-                  <span className="flex-shrink-0 w-8 h-8 rounded-full bg-gold/15 flex items-center justify-center">
-                    <s.icon className="w-4 h-4 text-gold" />
-                  </span>
-                  <div>
-                    <p className="font-body text-sm font-semibold text-foreground mb-0.5">
-                      <span className="text-gold/50 mr-1.5">{String(i + 1).padStart(2, "0")}</span>
-                      {s.title}
-                    </p>
-                    <p className="font-body text-[13px] text-muted-foreground leading-relaxed">{s.text}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </AccordionItem>
-          </div>
 
           <AccordionItem
             title="Certificações e garantias"
