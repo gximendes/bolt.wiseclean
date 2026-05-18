@@ -119,9 +119,7 @@ const Footer = () => (
 
       <div className="mt-4 pt-4 border-t border-cream/10">
         <p className="text-cream/30 font-body text-[11px] leading-relaxed text-center max-w-3xl mx-auto">
-          Empresa de higienização técnica. Não somos entidade prestadora de cuidados de saúde.
-          O Selo Safe pH™ é um padrão interno — não constitui certificação por entidade externa.
-          Avaliação técnica sem custos e sem obrigação de contratação.
+          Empresa de higienização técnica. Não somos entidade prestadora de cuidados de saúde. O padrão Safe pH™ é um padrão interno de qualidade WiseClean — não constitui certificação por entidade externa acreditada. Os resultados individuais podem variar em função do tipo de tecido, grau de contaminação e condições do ambiente. Avaliação técnica sem custos e sem obrigação de contratação.
         </p>
       </div>
     </div>

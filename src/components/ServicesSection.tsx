@@ -50,15 +50,15 @@ const packages = [
     priceAnchor: "139 €",
     isFixed: true,
     time: "≈ 5h",
-    tagline: "O protocolo completo para a sua família",
-    audience: "Famílias com alergénios comuns ou condições respiratórias",
+    tagline: "O protocolo completo — sofá, colchão e tapete num único serviço.",
+    audience: "Famílias com crianças, animais de estimação ou sensibilidades respiratórias",
     features: [
       "Avaliação técnica gratuita ao domicílio",
-      "Sofá + colchão + tapete",
-      "Aplicação antialérgica Safe pH™",
-      "Indicado para ambientes com alergénios comuns",
-      "Relatório técnico personalizado",
-      "Follow-up garantido a 45 dias",
+      "Sofá + colchão de casal + tapete",
+      "Produto antialérgico com padrão Safe pH™ — testado por tipo de tecido",
+      "Recolha de 100% da água residual para tratamento certificado",
+      "Relatório técnico personalizado entregue no final",
+      "Follow-up garantido a 45 dias pós-serviço",
     ],
     featured: true,
     footnote: "Em casos excepcionais pode ser ajustado até 179 € após avaliação técnica.",
@@ -272,8 +272,7 @@ const ServicesSection = ({ footerNote }: ServicesSectionProps = {}) => {
             Portfólio WiseClean · 2026
           </span>
           <h2 className="font-display text-3xl md:text-5xl font-bold text-foreground leading-tight">
-            O seu protocolo de{" "}
-            <span className="text-gradient-gold">higiene do seu lar</span>
+            Escolha o protocolo certo para a sua família.
           </h2>
         </motion.div>
 

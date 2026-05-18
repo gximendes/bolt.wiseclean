@@ -19,17 +19,17 @@ const pillars = [
   {
     icon: FlaskConical,
     title: "Pureza Técnica",
-    text: "Equipamento profissional IPC de injeção e extração elimina ácaros, bactérias, fungos e odores com profundidade e rigor técnico.",
+    text: "Equipamento profissional IPC com injeção e extração em profundidade. Removemos ácaros, bactérias, fungos e agentes de odor — e entregamos um relatório do que foi tratado.",
   },
   {
     icon: HeartPulse,
     title: "Redução de Alergénios",
-    text: "Protocolo com referência às melhores práticas de higienização antiparasitária. Indicado para ambientes com alergénios comuns.",
+    text: "Protocolo Safe pH™ indicado para ambientes com pele sensível, rinite e alergénios comuns. Não é prevenção genérica — é intervenção técnica com resultado documentado.",
   },
   {
     icon: Recycle,
     title: "Compromisso Ecológico",
-    text: "100% da água usada em cada serviço é recolhida e tratada em estação autorizada.",
+    text: "Recolhemos 100% da água residual para tratamento certificado na ETA Tratris (Tondela). Uma prática que documentamos em cada serviço.",
   },
 ];
 
@@ -45,7 +45,7 @@ const steps = [
   { icon: Search, title: "Avaliação Técnica", text: "Avaliamos o estado do seu sofá, colchão ou tapete. Identificamos as zonas com maior acumulação." },
   { icon: Shield, title: "Preparação Cuidada", text: "Seleccionamos os produtos certos para o seu tipo de tecido — seguros para a pele, crianças e animais." },
   { icon: SprayCan, title: "Ativação em Profundidade", text: "Aplicamos um agente enzimático nas zonas com maior concentração orgânica e abrimos as fibras manualmente." },
-  { icon: Droplets, title: "Eliminação 99,9%", text: "Com equipamento profissional a pressão e temperatura controladas, eliminamos ácaros, bactérias e odores." },
+  { icon: Droplets, title: "Remoção em Profundidade", text: "Com equipamento profissional de injeção e extração a pressão controlada, removemos em profundidade ácaros, bactérias e agentes de odor acumulados nas fibras." },
   { icon: Recycle, title: "Recolha Total da Água", text: "Toda a água é extraída e recolhida para tratamento certificado. Sem resíduos nem humidade escondida." },
   { icon: Wind, title: "Secagem Acelerada", text: "Aceleramos a secagem com ventilação orientada. Em 2 a 4 horas pode voltar a usar o seu espaço." },
   { icon: ClipboardCheck, title: "Follow-up a 45 Dias", text: "Inspecção final, relatório personalizado e follow-up automático aos 45 dias." },
@@ -110,7 +110,7 @@ const SofaQuiz = () => {
   return (
     <div className="max-w-2xl mx-auto bg-card border border-border rounded-2xl p-6 md:p-8 shadow-card">
       <p className="font-display text-lg md:text-xl text-foreground text-center mb-5">
-        Quando foi a última vez que higienizou o seu sofá?
+        Quando foi a última vez que alguém eliminou o que está dentro do seu sofá — não apenas a superfície?
       </p>
       <div className="grid grid-cols-2 gap-3 mb-5">
         {quizOptions.map((opt) => (
@@ -130,8 +130,7 @@ const SofaQuiz = () => {
       {showClean && (
         <div className="text-center pt-3 border-t border-border">
           <p className="text-foreground/85 font-body text-sm leading-relaxed mb-4">
-            Os estofos devem ser higienizados de 6 em 6 meses. Um sofá com uso normal pode
-            acumular até 2 milhões de ácaros.
+            Estudos de qualidade do ar interior mostram que num sofá com uso normal podem acumular-se mais de um milhão de ácaros. A higienização de 6 em 6 meses não é luxo — é o mínimo para quem tem crianças ou pele sensível em casa.
           </p>
           <a
             href={whatsappUrl(WHATSAPP_MESSAGES.diagnosis)}
@@ -179,11 +178,10 @@ const WhyWiseCleanSection = () => {
             Porquê WiseClean
           </span>
           <h2 className="font-display text-3xl md:text-5xl font-bold text-foreground leading-tight mb-4">
-            Não é limpeza. É{" "}
-            <span className="text-gradient-gold">higienização técnica.</span>
+            A sua família merece saber o que vive nos tecidos.
           </h2>
           <p className="text-muted-foreground font-body text-base max-w-xl mx-auto">
-            Os têxteis do lar acumulam o que não vê — mas que a sua pele e os seus pulmões sentem. A WiseClean elimina o invisível.
+            Sofás, colchões e tapetes acumulam o que os olhos não vêem — e que a pele e os pulmões sentem. A WiseClean elimina, documenta e prova.
           </p>
         </motion.div>
 

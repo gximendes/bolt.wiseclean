@@ -7,9 +7,9 @@ import { whatsappUrl, WHATSAPP_MESSAGES, RESPONSE_TIME } from "@/lib/constants";
 const HERO_IMAGE = "https://images.pexels.com/photos/6480707/pexels-photo-6480707.jpeg?auto=compress&cs=tinysrgb&w=1920&q=80";
 
 const trustChips = [
-  { icon: FlaskConical, label: "Safe pH™" },
-  { icon: Recycle, label: "Recolha 100%" },
-  { icon: Zap, label: "< 1h resposta" },
+  { icon: FlaskConical, label: "Padrão Safe pH™" },
+  { icon: Recycle, label: "Água recolhida 100%" },
+  { icon: Zap, label: "Diagnóstico gratuito" },
 ];
 
 type HeroSectionProps = {
@@ -69,9 +69,8 @@ const HeroSection = ({ eyebrow, subline }: HeroSectionProps = {}) => (
         >
           {subline ?? (
             <>
-              Higienização técnica profunda com padrão interno{" "}
-              <span className="text-gold">Safe pH™</span> — para um lar mais limpo
-              e um ambiente mais confortável.
+              O único serviço na região Centro que elimina o invisível — e entrega a prova por escrito. Com padrão{" "}
+              <span className="text-gold">Safe pH™</span> e recolha de toda a água residual para tratamento certificado.
             </>
           )}
         </motion.p>

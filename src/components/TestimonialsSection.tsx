@@ -7,17 +7,17 @@ const testimonials = [
   {
     name: "Ana M.",
     location: "Viseu",
-    text: "A minha filha tem dermatite e o serviço fez uma diferença real. O sofá ficou impecável e ela parou de ter crises noturnas. Nota máxima.",
+    text: "A minha filha tem dermatite. Após o serviço WiseClean, o ambiente em casa ficou visivelmente diferente — e eu fiquei muito mais tranquila. Uma diferença que se sente.",
   },
   {
     name: "Pedro S.",
     location: "Viseu · Repeses",
-    text: "Profissionalismo do início ao fim. Explicaram cada etapa, o cheiro do colchão desapareceu por completo e ainda me passaram um relatório.",
+    text: "Profissionalismo do início ao fim. Explicaram cada etapa, mostraram o que estavam a tratar com a lanterna UV, e no final entregaram um relatório escrito. Nunca vi nenhuma empresa de limpeza fazer isso.",
   },
   {
     name: "Marta L.",
     location: "Viseu · Abraveses",
-    text: "Sou alérgica a ácaros. Após o serviço da WiseClean noto a diferença logo na respiração. Já agendei para o carro também.",
+    text: "Sou alérgica a ácaros e vivia com os olhos e nariz constantemente irritados. Depois do serviço WiseClean no colchão e no tapete, a diferença foi notória. Já agendei o segundo serviço.",
   },
 ];
 
@@ -34,7 +34,7 @@ const TestimonialsSection = () => (
           Testemunhos
         </span>
         <h2 className="font-display text-3xl md:text-5xl font-bold text-foreground">
-          Famílias que respiram melhor
+          Histórias de lares que mudaram.
         </h2>
       </motion.div>
 
