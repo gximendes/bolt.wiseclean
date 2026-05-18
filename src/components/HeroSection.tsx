@@ -22,11 +22,10 @@ const HeroSection = ({ eyebrow, subline }: HeroSectionProps = {}) => (
     <div className="absolute inset-0">
       <img
         src={HERO_IMAGE}
-        alt=""
+        alt="Higienização técnica de sofá ao domicílio em Viseu — WiseClean Safe pH™"
         width={1920}
         height={1080}
         className="w-full h-full object-cover scale-105"
-        aria-hidden
       />
       <div className="absolute inset-0 bg-gradient-forest opacity-90" />
       <div className="absolute inset-0 bg-gradient-mesh opacity-70" />
