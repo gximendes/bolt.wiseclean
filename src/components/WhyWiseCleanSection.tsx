@@ -1,5 +1,5 @@
 import { motion, AnimatePresence } from "framer-motion";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   FlaskConical,
   HeartPulse,
@@ -157,6 +157,15 @@ const WhyWiseCleanSection = () => {
   const [openStep, setOpenStep] = useState<string | null>(null);
   const [openSeal, setOpenSeal] = useState<string | null>(null);
 
+  useEffect(() => {
+    if (window.location.hash === "#protocolo") {
+      setOpenStep("steps");
+      setTimeout(() => {
+        document.getElementById("protocolo")?.scrollIntoView({ behavior: "smooth" });
+      }, 100);
+    }
+  }, []);
+
   return (
     <section id="saude" className="py-24 lg:py-32 bg-background">
       <div className="container mx-auto px-6">
@@ -229,6 +238,7 @@ const WhyWiseCleanSection = () => {
             </div>
           </AccordionItem>
 
+          <div id="protocolo">
           <AccordionItem
             title="Protocolo de 8 etapas"
             open={openStep !== null}
@@ -251,6 +261,7 @@ const WhyWiseCleanSection = () => {
               ))}
             </div>
           </AccordionItem>
+          </div>
 
           <AccordionItem
             title="Certificações e garantias"
