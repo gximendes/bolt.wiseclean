@@ -78,6 +78,10 @@
 }
 
 @layer base {
+  html {
+    font-size: clamp(14px, 1vw, 18px);
+  }
+
   * {
     @apply border-border;
   }

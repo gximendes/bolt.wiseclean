@@ -8,7 +8,6 @@ import {
   Box,
   Moon,
   Check,
-  ChevronDown,
   MessageCircle,
   Stethoscope,
 } from "lucide-react";
@@ -28,6 +27,11 @@ const ICON_MAP: Record<string, React.ElementType> = {
   "ti-armchair": Armchair,
   "ti-square-rounded": Box,
   "ti-zzz": Moon,
+};
+
+const PACKAGE_AUDIENCE: Record<string, string> = {
+  saude: "Ideal para famílias com crianças, animais de estimação ou sensibilidades respiratórias.",
+  conforto: "Para casais e adultos que valorizam o descanso completo.",
 };
 
 type VariantChoices = Record<string, number>;
@@ -52,58 +56,42 @@ const PriceCalculator = () => {
     setVariantChoices((prev) => ({ ...prev, [pieceId]: optionIndex }));
   };
 
-  const detectedPackage = useMemo(() => {
-    const sorted = [...selectedIds].sort();
+  const activePackage = useMemo(() => {
+    const idSet = new Set(selectedIds);
     for (const pkg of PACKAGES) {
-      const required = [...pkg.requiredIds].sort();
-      if (sorted.length === required.length && sorted.every((id, i) => id === required[i])) {
+      if (pkg.requiredIds.every((id) => idSet.has(id))) {
         return pkg;
       }
     }
     return null;
   }, [selectedIds]);
 
-  const partialPackage = useMemo(() => {
-    if (detectedPackage) return null;
-    const sorted = [...selectedIds].sort();
-    for (const pkg of PACKAGES) {
-      const required = [...pkg.requiredIds].sort();
-      if (required.every((id) => sorted.includes(id))) {
-        return pkg;
-      }
-    }
-    return null;
-  }, [selectedIds, detectedPackage]);
-
   const calculation = useMemo(() => {
     let totalMin = 0;
     let totalMax = 0;
-    const packagePieceIds = new Set(partialPackage?.requiredIds ?? []);
+    const packagePieceIds = new Set(activePackage?.requiredIds ?? []);
 
     for (const id of selectedIds) {
+      if (packagePieceIds.has(id) && activePackage) continue;
       const piece = PIECES.find((p) => p.id === id);
       if (!piece) continue;
       const optIdx = variantChoices[id] ?? 0;
       const variant = piece.variants[0];
       const option = variant.options[optIdx] ?? variant.options[0];
-
-      if (packagePieceIds.has(id) && partialPackage) {
-        continue;
-      }
       totalMin += option.priceMin;
       totalMax += option.priceMax;
     }
 
-    if (partialPackage) {
-      totalMin += partialPackage.priceMin;
-      totalMax += partialPackage.priceMax;
+    if (activePackage) {
+      totalMin += activePackage.priceMin;
+      totalMax += activePackage.priceMax;
     }
 
     totalMin += selectedZone.fee;
     totalMax += selectedZone.fee;
 
     return { totalMin, totalMax };
-  }, [selectedIds, variantChoices, selectedZone, partialPackage]);
+  }, [selectedIds, variantChoices, selectedZone, activePackage]);
 
   const buildWhatsAppUrl = () => {
     const lines = selectedIds.map((id) => {
@@ -153,6 +141,9 @@ const PriceCalculator = () => {
           <p className="font-body text-sm font-semibold text-foreground mb-4 text-center">
             1. Selecione as peças a higienizar
           </p>
+          <p className="font-body text-xs text-muted-foreground text-center mb-4">
+            Selecione sofá + colchão + tapete para activar o Pacote Saúde (valor especial).
+          </p>
           <div className="grid grid-cols-2 md:grid-cols-3 gap-4 max-w-3xl mx-auto">
             {PIECES.map((piece) => {
               const Icon = ICON_MAP[piece.icon] ?? Sofa;
@@ -184,7 +175,7 @@ const PriceCalculator = () => {
 
         {/* Package detection banner */}
         <AnimatePresence>
-          {detectedPackage && (
+          {activePackage && (
             <motion.div
               initial={{ opacity: 0, height: 0 }}
               animate={{ opacity: 1, height: "auto" }}
@@ -194,10 +185,14 @@ const PriceCalculator = () => {
               <div className="bg-emerald-50 border border-emerald-200 rounded-xl px-5 py-4 flex items-start gap-3">
                 <Check className="w-5 h-5 text-emerald-600 flex-shrink-0 mt-0.5" />
                 <div>
-                  <p className="font-body text-sm font-semibold text-emerald-800">{detectedPackage.name}</p>
-                  <p className="font-body text-xs text-emerald-700">{detectedPackage.savingMessage}</p>
-                  {detectedPackage.footnote && (
-                    <p className="font-body text-[11px] text-emerald-600 mt-1 italic">{detectedPackage.footnote}</p>
+                  <p className="font-body text-sm font-semibold text-emerald-800">{activePackage.name}</p>
+                  <p className="font-body text-xs text-emerald-700">{activePackage.description}</p>
+                  <p className="font-body text-xs text-emerald-700">{activePackage.savingMessage}</p>
+                  {activePackage.footnote && (
+                    <p className="font-body text-[11px] text-emerald-600 mt-1 italic">{activePackage.footnote}</p>
+                  )}
+                  {PACKAGE_AUDIENCE[activePackage.id] && (
+                    <p className="font-body text-xs text-emerald-600 mt-1">{PACKAGE_AUDIENCE[activePackage.id]}</p>
                   )}
                 </div>
               </div>
@@ -240,7 +235,7 @@ const PriceCalculator = () => {
                               : "border-border text-foreground/70 hover:border-gold/50"
                           }`}
                         >
-                          {opt.name} <span className="text-muted-foreground ml-1">{opt.priceMin}–{opt.priceMax} €</span>
+                          {opt.name}
                         </button>
                       ))}
                     </div>

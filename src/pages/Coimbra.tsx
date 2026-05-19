@@ -10,7 +10,7 @@ import WhatsAppButton from "@/components/WhatsAppButton";
 const Coimbra = () => (
   <>
     <Navbar />
-    <main>
+    <main className="w-full overflow-x-hidden">
       <HeroSection
         eyebrow="Centro de Higienização Técnica · Coimbra"
         subline={
