@@ -44,6 +44,53 @@ const seals = [
 const quizOptions = ["Nunca", "Há mais de 1 ano", "Há 6 meses", "Recentemente"] as const;
 type QuizAnswer = (typeof quizOptions)[number];
 
+const quizResponses: Record<QuizAnswer, {
+  bg: string;
+  border: string;
+  titleClass: string;
+  title: string;
+  text: string;
+  cta: string;
+  waMsg: string;
+}> = {
+  "Nunca": {
+    bg: "bg-red-50",
+    border: "border-red-100",
+    titleClass: "text-red-900",
+    title: "O que está no seu sofá agora mesmo",
+    text: "Um sofá sem higienização técnica acumula mais de 2 milhões de ácaros, células mortas de pele, fungos e resíduos orgânicos na esponja interior. Cada vez que se senta, liberta uma nuvem invisível de alergénios. O seu sistema imunitário está a trabalhar horas extra — e provavelmente não sabe porquê.",
+    cta: "Quero resolver isto esta semana →",
+    waMsg: WHATSAPP_MESSAGES.diagnosis,
+  },
+  "Há mais de 1 ano": {
+    bg: "bg-amber-50",
+    border: "border-amber-100",
+    titleClass: "text-amber-900",
+    title: "Ainda dá para recuperar — mas o protocolo completo vai ser necessário",
+    text: "Em 12 meses, a esponja acumulou transpiração, células mortas e resíduos suficientes para degradar a qualidade do ar do seu lar. O Pacote Saúde trata sofá, colchão e tapete em simultâneo — é o reset que o espaço precisa.",
+    cta: "Ver o Pacote Saúde →",
+    waMsg: WHATSAPP_MESSAGES.package("Saúde", "139 €"),
+  },
+  "Há 6 meses": {
+    bg: "bg-emerald-50",
+    border: "border-emerald-100",
+    titleClass: "text-emerald-900",
+    title: "Está dentro do ciclo — agende o próximo agora",
+    text: "Está no ritmo certo. Para manter este nível de higiene e proteger a família, o próximo serviço devia ser planeado antes que os ácaros atinjam níveis críticos outra vez. Quem agenda com antecedência tem prioridade na marcação.",
+    cta: "Agendar para os próximos meses →",
+    waMsg: WHATSAPP_MESSAGES.diagnosis,
+  },
+  "Recentemente": {
+    bg: "bg-blue-50",
+    border: "border-blue-100",
+    titleClass: "text-blue-900",
+    title: "Excelente hábito — e o colchão?",
+    text: "O colchão acumula 3× mais ácaros que o sofá porque passamos 8 horas por noite em contacto directo com ele. Se ainda não foi tratado, é o próximo passo óbvio. O Pacote Conforto trata sofá e colchão em conjunto.",
+    cta: "Ver o Pacote Conforto →",
+    waMsg: WHATSAPP_MESSAGES.package("Conforto", "89 €"),
+  },
+};
+
 const AccordionItem = ({
   title,
   icon,
@@ -87,8 +134,7 @@ const AccordionItem = ({
 
 const SofaQuiz = () => {
   const [answer, setAnswer] = useState<QuizAnswer | null>(null);
-  const showClean = answer === "Nunca" || answer === "Há mais de 1 ano" || answer === "Há 6 meses";
-  const showMaintenance = answer === "Recentemente";
+  const response = answer ? quizResponses[answer] : null;
 
   return (
     <div className="max-w-2xl mx-auto bg-card border border-border rounded-2xl p-6 md:p-8 shadow-card">
@@ -110,26 +156,33 @@ const SofaQuiz = () => {
           </button>
         ))}
       </div>
-      {showClean && (
-        <div className="text-center pt-3 border-t border-border">
-          <p className="text-foreground/85 font-body text-sm leading-relaxed mb-4">
-            Estudos de qualidade do ar interior mostram que num sofá com uso normal podem acumular-se mais de um milhão de ácaros. A higienização de 6 em 6 meses não é luxo — é o mínimo para quem tem crianças ou pele sensível em casa.
-          </p>
-          <a
-            href={whatsappUrl(WHATSAPP_MESSAGES.diagnosis)}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 bg-gradient-gold text-secondary font-body font-semibold px-6 py-3 rounded-lg shadow-gold text-sm btn-fill transition-all duration-500 ease-luxury"
+      <AnimatePresence mode="wait">
+        {response && (
+          <motion.div
+            key={answer}
+            initial={{ opacity: 0, y: 8 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -8 }}
+            transition={{ duration: 0.3 }}
+            className={`${response.bg} border ${response.border} rounded-xl p-5 mt-4`}
           >
-            Agendar diagnóstico gratuito
-          </a>
-        </div>
-      )}
-      {showMaintenance && (
-        <p className="text-foreground/85 font-body text-sm leading-relaxed text-center pt-3 border-t border-border">
-          Para manter esse nível, recomendamos higienização a cada 6 meses.
-        </p>
-      )}
+            <p className={`font-display text-base font-semibold ${response.titleClass} mb-2`}>
+              {response.title}
+            </p>
+            <p className="font-body text-sm text-foreground/85 leading-relaxed">
+              {response.text}
+            </p>
+            <a
+              href={whatsappUrl(response.waMsg)}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 bg-gradient-gold text-secondary font-body font-semibold px-6 py-3 rounded-lg shadow-gold text-sm btn-fill transition-all duration-500 ease-luxury mt-4"
+            >
+              {response.cta}
+            </a>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 };

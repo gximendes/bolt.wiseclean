@@ -1,15 +1,15 @@
 import type { ReactNode } from "react";
 import { motion } from "framer-motion";
-import { ArrowRight, FlaskConical, Recycle, Zap } from "lucide-react";
+import { ArrowRight, FlaskConical, Recycle, FileText } from "lucide-react";
 import { trackWhatsAppClick } from "@/lib/analytics";
 import { whatsappUrl, WHATSAPP_MESSAGES, RESPONSE_TIME } from "@/lib/constants";
 
 const HERO_IMAGE = "https://images.pexels.com/photos/6480707/pexels-photo-6480707.jpeg?auto=compress&cs=tinysrgb&w=1920&q=80";
 
 const trustChips = [
-  { icon: FlaskConical, label: "Padrão Safe pH™" },
-  { icon: Recycle, label: "Água recolhida 100%" },
-  { icon: Zap, label: "Diagnóstico gratuito" },
+  { icon: FlaskConical, label: "Safe pH™ — pH controlado por tipo de tecido" },
+  { icon: Recycle, label: "ETA Tratris (Tondela) — 100% da água tratada" },
+  { icon: FileText, label: "Relatório técnico em cada serviço" },
 ];
 
 type HeroSectionProps = {
@@ -37,12 +37,12 @@ const HeroSection = ({ eyebrow, subline }: HeroSectionProps = {}) => (
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.6 }}
-          className="text-gold text-xs md:text-sm font-body tracking-[0.25em] uppercase mb-6"
+          className="text-gold text-xs md:text-sm font-body tracking-[0.35em] uppercase mb-6"
         >
           {eyebrow ?? "Centro de Higienização Técnica · Viseu"}
         </motion.p>
 
-        <h1 className="font-display text-5xl md:text-6xl lg:text-7xl font-bold leading-[1.05] mb-6 text-cream">
+        <h1 className="font-display text-6xl md:text-7xl lg:text-8xl font-bold leading-[0.95] mb-6 text-cream">
           <motion.span
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -67,12 +67,7 @@ const HeroSection = ({ eyebrow, subline }: HeroSectionProps = {}) => (
           transition={{ duration: 0.6, delay: 0.5 }}
           className="text-lg md:text-xl mb-8 max-w-xl text-cream/80 font-body"
         >
-          {subline ?? (
-            <>
-              O único serviço na região Centro que elimina o invisível — e entrega a prova por escrito. Com padrão{" "}
-              <span className="text-gold">Safe pH™</span> e recolha de toda a água residual para tratamento certificado.
-            </>
-          )}
+          {subline ?? "Higienização técnica profunda ao domicílio — com relatório escrito do que foi eliminado."}
         </motion.p>
 
         <motion.div
@@ -113,12 +108,13 @@ const HeroSection = ({ eyebrow, subline }: HeroSectionProps = {}) => (
               {RESPONSE_TIME}
             </p>
           </div>
-          <a
-            href="#servicos"
+          <button
+            type="button"
+            onClick={() => window.scrollBy({ top: window.innerHeight, behavior: "smooth" })}
             className="font-body font-medium px-8 py-4 rounded-lg border border-cream/25 text-cream hover:border-gold hover:text-gold flex items-center justify-center gap-2 transition-colors text-base"
           >
             Conhecer os serviços
-          </a>
+          </button>
         </motion.div>
       </div>
     </div>
