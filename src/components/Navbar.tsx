@@ -5,6 +5,7 @@ import { whatsappUrl, WHATSAPP_MESSAGES } from "@/lib/constants";
 
 const links = [
   { label: "Serviços", href: "#servicos" },
+  { label: "Calculadora", href: "#calculadora" },
   { label: "Protocolo", href: "#protocolo" },
   { label: "Contacto", href: "#orcamento" },
 ];
