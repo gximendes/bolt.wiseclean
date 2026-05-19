@@ -76,7 +76,7 @@ const quizResponses: Record<QuizAnswer, {
     border: "border-emerald-100",
     titleClass: "text-emerald-900",
     title: "Está dentro do ciclo — agende o próximo agora",
-    text: "Está no ritmo certo. Para manter este nível de higiene e proteger a família, o próximo serviço devia ser planeado antes que os ácaros atinjam níveis críticos outra vez. Quem agenda com antecedência tem prioridade na marcação.",
+    text: "Está no ritmo certo. Para manter este nível de higiene, o próximo serviço devia ser planeado antes que os ácaros atinjam níveis críticos outra vez. Quem agenda com antecedência tem prioridade na marcação.",
     cta: "Agendar para os próximos meses →",
     waMsg: WHATSAPP_MESSAGES.diagnosis,
   },
@@ -87,7 +87,7 @@ const quizResponses: Record<QuizAnswer, {
     title: "Excelente hábito — e o colchão?",
     text: "O colchão acumula 3× mais ácaros que o sofá porque passamos 8 horas por noite em contacto directo com ele. Se ainda não foi tratado, é o próximo passo óbvio. O Pacote Conforto trata sofá e colchão em conjunto.",
     cta: "Ver o Pacote Conforto →",
-    waMsg: WHATSAPP_MESSAGES.package("Conforto", "89 €"),
+    waMsg: WHATSAPP_MESSAGES.package("Conforto", "a partir de 89 €"),
   },
 };
 

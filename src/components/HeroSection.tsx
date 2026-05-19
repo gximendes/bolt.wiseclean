@@ -4,8 +4,6 @@ import { ArrowRight, FlaskConical, Recycle, FileText } from "lucide-react";
 import { trackWhatsAppClick } from "@/lib/analytics";
 import { whatsappUrl, WHATSAPP_MESSAGES, RESPONSE_TIME } from "@/lib/constants";
 
-const HERO_IMAGE = "https://images.pexels.com/photos/6480707/pexels-photo-6480707.jpeg?auto=compress&cs=tinysrgb&w=1920&q=80";
-
 const trustChips = [
   { icon: FlaskConical, label: "Safe pH™ — pH controlado por tipo de tecido" },
   { icon: Recycle, label: "ETA Tratris (Tondela) — 100% da água tratada" },
@@ -20,13 +18,20 @@ type HeroSectionProps = {
 const HeroSection = ({ eyebrow, subline }: HeroSectionProps = {}) => (
   <section className="relative min-h-screen flex items-center overflow-hidden">
     <div className="absolute inset-0">
-      <img
-        src={HERO_IMAGE}
-        alt="Higienização técnica de sofá ao domicílio em Viseu — WiseClean Safe pH™"
-        width={1920}
-        height={1080}
+      <video
+        autoPlay
+        muted
+        loop
+        playsInline
         className="w-full h-full object-cover scale-105"
-      />
+        aria-hidden
+        poster="https://images.pexels.com/videos/7614533/pexels-photo-7614533.jpeg?auto=compress&cs=tinysrgb&h=627&fit=crop&w=1200"
+      >
+        <source
+          src="https://videos.pexels.com/video-files/7614533/7614533-uhd_2560_1440_30fps.mp4"
+          type="video/mp4"
+        />
+      </video>
       <div className="absolute inset-0 bg-gradient-forest opacity-90" />
       <div className="absolute inset-0 bg-gradient-mesh opacity-70" />
     </div>

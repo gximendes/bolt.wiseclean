@@ -44,27 +44,55 @@ const ProtocolSection = () => (
       </motion.div>
 
       <div className="grid md:grid-cols-2 gap-4 max-w-3xl mx-auto">
-        {steps.map((s, i) => (
-          <motion.div
-            key={s.title}
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ delay: i * 0.05 }}
-            className="bg-card border border-border rounded-2xl p-6 shadow-card"
-          >
-            <span className="text-gold/40 font-display text-xs tracking-widest mb-2 block">
-              {String(i + 1).padStart(2, "0")}
-            </span>
-            <s.icon className="w-8 h-8 text-gold mb-3" />
-            <h3 className="font-display text-base font-semibold text-foreground mb-2">
-              {s.title}
-            </h3>
-            <p className="text-muted-foreground font-body text-sm leading-relaxed">
-              {s.text}
-            </p>
-          </motion.div>
-        ))}
+        {steps.map((s, i) => {
+          const isLast = i === steps.length - 1;
+          return (
+            <motion.div
+              key={s.title}
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ delay: i * 0.05 }}
+              className="bg-card border border-border rounded-2xl p-6 shadow-card"
+            >
+              {isLast ? (
+                <div className="flex items-start gap-4">
+                  <div className="flex items-start gap-3 flex-1">
+                    <span className="flex-shrink-0 w-8 h-8 rounded-full bg-gold/15 flex items-center justify-center">
+                      <s.icon className="w-4 h-4 text-gold" />
+                    </span>
+                    <div>
+                      <p className="font-body text-sm font-semibold text-foreground mb-0.5">
+                        <span className="text-gold/50 mr-1.5">08</span>
+                        {s.title}
+                      </p>
+                      <p className="font-body text-[13px] text-muted-foreground leading-relaxed">{s.text}</p>
+                    </div>
+                  </div>
+                  <img
+                    src="https://images.pexels.com/photos/7407947/pexels-photo-7407947.jpeg?auto=compress&cs=tinysrgb&w=300"
+                    alt="Acabamento WiseClean — mãos a arrumar almofada de sofá após higienização técnica Safe pH™"
+                    className="w-24 h-24 object-cover rounded-xl flex-shrink-0 hidden sm:block"
+                    loading="lazy"
+                  />
+                </div>
+              ) : (
+                <>
+                  <span className="text-gold/40 font-display text-xs tracking-widest mb-2 block">
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
+                  <s.icon className="w-8 h-8 text-gold mb-3" />
+                  <h3 className="font-display text-base font-semibold text-foreground mb-2">
+                    {s.title}
+                  </h3>
+                  <p className="text-muted-foreground font-body text-sm leading-relaxed">
+                    {s.text}
+                  </p>
+                </>
+              )}
+            </motion.div>
+          );
+        })}
       </div>
 
       <motion.div
