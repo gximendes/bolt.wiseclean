@@ -1,50 +1,57 @@
 import { useEffect, useState } from "react";
+import { motion } from "framer-motion";
 import { MessageCircle } from "lucide-react";
-import { trackWhatsAppClick } from "@/lib/analytics";
 import { whatsappUrl, WHATSAPP_MESSAGES } from "@/lib/constants";
+import { trackWhatsAppClick } from "@/lib/analytics";
 
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 30);
-    onScroll();
+    const onScroll = () => setScrolled(window.scrollY > 40);
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  const WA_URL = whatsappUrl(WHATSAPP_MESSAGES.hero);
-
   return (
-    <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ease-luxury ${
+    <motion.nav
+      initial={{ y: -100 }}
+      animate={{ y: 0 }}
+      transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
         scrolled
-          ? "bg-cream/85 backdrop-blur-xl border-b border-foreground/10 shadow-elevated py-0"
-          : "bg-transparent border-b border-transparent"
+          ? "bg-cream/90 backdrop-blur-md border-b border-cream-deep/30 py-3"
+          : "bg-transparent py-5"
       }`}
     >
-      <div
-        className={`container mx-auto px-6 flex items-center justify-between transition-all duration-500 ${
-          scrolled ? "h-16" : "h-20"
-        }`}
-      >
-        <a href="#" className={`font-display text-xl md:text-2xl font-bold tracking-wide transition-colors ${scrolled ? "text-foreground" : "text-cream"}`}>
-          Wise<span className="text-gold">Clean</span>
+      <div className="container mx-auto px-6 flex items-center justify-between">
+        <a href="/" className="flex items-center gap-2 group">
+          <span
+            className={`font-display text-2xl md:text-3xl font-semibold tracking-tight transition-colors ${
+              scrolled ? "text-navy" : "text-cream"
+            }`}
+          >
+            Wise<span className="text-gold">Clean</span>
+          </span>
         </a>
 
         <a
-          href={WA_URL}
+          href={whatsappUrl(WHATSAPP_MESSAGES.hero)}
           target="_blank"
           rel="noopener noreferrer"
           onClick={() => trackWhatsAppClick("navbar")}
-          className="btn-fill bg-gradient-gold font-body font-semibold px-5 py-2.5 rounded-lg text-secondary text-sm transition-all duration-500 ease-luxury shadow-gold inline-flex items-center gap-2"
+          className={`inline-flex items-center gap-2 px-4 md:px-6 py-2.5 rounded-full font-body font-medium text-sm transition-all duration-500 ${
+            scrolled
+              ? "bg-navy text-cream hover:bg-navy-deep"
+              : "bg-gold text-navy hover:bg-gold-warm"
+          }`}
         >
-          <MessageCircle className="w-4 h-4 md:hidden" />
-          <span className="hidden md:inline">Agendar via WhatsApp</span>
-          <span className="md:hidden">Agendar</span>
+          <MessageCircle className="w-4 h-4" />
+          <span className="hidden sm:inline">Agendar via WhatsApp</span>
+          <span className="sm:hidden">Agendar</span>
         </a>
       </div>
-    </nav>
+    </motion.nav>
   );
 };
 

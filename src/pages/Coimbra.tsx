@@ -2,7 +2,7 @@ import Navbar from "@/components/Navbar";
 import HeroSection from "@/components/HeroSection";
 import TestimonialsSection from "@/components/TestimonialsSection";
 import ServicesSection from "@/components/ServicesSection";
-import WhyWiseCleanSection from "@/components/WhyWiseCleanSection";
+import DifferenceSection from "@/components/DifferenceSection";
 import ContactSection from "@/components/ContactSection";
 import Footer from "@/components/Footer";
 import WhatsAppButton from "@/components/WhatsAppButton";
@@ -25,7 +25,7 @@ const Coimbra = () => (
       <ServicesSection
         footerNote={<>Zona 3 — taxa fixa 30 € · mínimo 2 serviços por dia de deslocação.</>}
       />
-      <WhyWiseCleanSection />
+      <DifferenceSection />
       <ContactSection />
     </main>
     <Footer />

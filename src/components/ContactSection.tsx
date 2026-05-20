@@ -1,193 +1,108 @@
 import { motion } from "framer-motion";
-import { useEffect, useState } from "react";
-import { MessageCircle, Users, X } from "lucide-react";
+import { MessageCircle, Phone, Mail, Clock, ArrowRight } from "lucide-react";
+import { whatsappUrl, WHATSAPP_MESSAGES } from "@/lib/constants";
 import { trackWhatsAppClick } from "@/lib/analytics";
-import { whatsappUrl, WHATSAPP_MESSAGES, RESPONSE_TIME } from "@/lib/constants";
 
-const HUBSPOT_EMBED_SRC = "https://js-eu1.hsforms.net/forms/embed/148359973.js";
+const ContactSection = () => (
+  <section id="contacto" className="bg-navy-deep py-24 md:py-32 overflow-hidden relative">
+    {/* Textura subtil */}
+    <div
+      className="absolute inset-0 opacity-[0.04]"
+      style={{
+        backgroundImage: "radial-gradient(circle at 1px 1px, #C9A24A 1px, transparent 0)",
+        backgroundSize: "40px 40px",
+      }}
+    />
 
-const REFERRAL_URL =
-  "https://wa.me/?text=" + encodeURIComponent(WHATSAPP_MESSAGES.referral);
+    <div className="container mx-auto px-6 relative">
+      <div className="max-w-3xl mx-auto text-center">
+        <motion.p
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="text-eyebrow text-gold mb-6"
+        >
+          Próximo Passo
+        </motion.p>
 
-const ContactSection = () => {
-  const [modalOpen, setModalOpen] = useState(false);
-  const [rgpdAccepted, setRgpdAccepted] = useState(false);
+        <motion.h2
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+          className="text-display-lg text-cream mb-8"
+        >
+          O diagnóstico é
+          <br />
+          <span className="italic text-gold">gratuito.</span>
+        </motion.h2>
 
-  useEffect(() => {
-    if (document.querySelector(`script[src="${HUBSPOT_EMBED_SRC}"]`)) return;
-    const script = document.createElement("script");
-    script.src = HUBSPOT_EMBED_SRC;
-    script.defer = true;
-    document.body.appendChild(script);
-  }, []);
+        <motion.p
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7, delay: 0.15 }}
+          className="text-body-lg text-cream/70 mb-12 max-w-xl mx-auto"
+        >
+          Envia uma foto do sofá pelo WhatsApp e respondo com um valor estimado em menos de 1 hora.
+          Sem compromisso.
+        </motion.p>
 
-  useEffect(() => {
-    if (!modalOpen) return;
-    const prev = document.body.style.overflow;
-    document.body.style.overflow = "hidden";
-    return () => {
-      document.body.style.overflow = prev;
-    };
-  }, [modalOpen]);
+        {/* CTA principal */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
+          className="mb-16"
+        >
+          <a
+            href={whatsappUrl(WHATSAPP_MESSAGES.hero)}
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={() => trackWhatsAppClick("contact_cta")}
+            className="group inline-flex items-center gap-3 bg-gold hover:bg-gold-warm text-navy px-10 py-5 rounded-full font-body font-semibold text-base md:text-lg transition-all duration-500"
+          >
+            <MessageCircle className="w-5 h-5" />
+            Agendar via WhatsApp
+            <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+          </a>
+          <p className="text-cream/40 text-body-sm mt-4">
+            Resposta em menos de 1 hora · Diagnóstico gratuito sem compromisso
+          </p>
+        </motion.div>
 
-  return (
-    <section id="orcamento" className="relative py-24 lg:py-32 bg-gradient-forest overflow-hidden">
-      <div className="container mx-auto px-6 relative">
+        {/* Info de contacto */}
         <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
-          className="text-center max-w-2xl mx-auto mb-10"
+          transition={{ duration: 0.7, delay: 0.4 }}
+          className="grid sm:grid-cols-3 gap-6 max-w-2xl mx-auto pt-12 border-t border-cream/10"
         >
-          <h2 className="font-display text-3xl md:text-5xl font-bold text-cream mb-4 leading-tight">
-            A sua casa merece{" "}
-            <span className="text-gradient-gold">puro.</span>
-          </h2>
-          <p className="text-cream/70 font-body text-base max-w-md mx-auto">
-            Diagnóstico gratuito ao domicílio. {RESPONSE_TIME}
-          </p>
-        </motion.div>
-
-        <div className="max-w-2xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            className="text-center mb-8"
+          <a
+            href="tel:+351912669208"
+            className="flex flex-col items-center gap-2 text-cream/70 hover:text-gold transition-colors"
           >
-            <a
-              href={whatsappUrl(WHATSAPP_MESSAGES.hero)}
-              target="_blank"
-              rel="noopener noreferrer"
-              onClick={() => trackWhatsAppClick("contact_cta")}
-              className="btn-fill bg-gradient-gold font-body font-semibold px-10 py-4 rounded-lg text-secondary inline-flex items-center justify-center gap-2 shadow-gold text-base transition-all duration-500 ease-luxury"
-            >
-              <MessageCircle className="w-5 h-5" />
-              Agendar via WhatsApp
-            </a>
-            <p className="font-body text-[11px] mt-2 text-cream/50">
-              {RESPONSE_TIME}
-            </p>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            className="text-center mb-8"
+            <Phone className="w-5 h-5 text-gold" />
+            <span className="text-body-sm">912 669 208</span>
+          </a>
+          <a
+            href="mailto:wiseclean@gmail.com"
+            className="flex flex-col items-center gap-2 text-cream/70 hover:text-gold transition-colors"
           >
-            <button
-              type="button"
-              onClick={() => setModalOpen(true)}
-              className="font-body font-medium px-8 py-4 rounded-lg border border-cream/25 text-cream hover:border-gold hover:text-gold inline-flex items-center gap-2 transition-colors text-base"
-            >
-              Preencher formulário
-            </button>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            className="mt-6 rounded-xl border border-gold/25 bg-cream/5 px-5 py-4 text-center max-w-md mx-auto"
-          >
-            <Users className="w-4 h-4 text-gold mx-auto mb-1.5" />
-            <p className="text-cream/70 font-body text-sm leading-relaxed">
-              Recomende a um amigo — ambos recebem 15 € de desconto.
-            </p>
-            <a
-              href={REFERRAL_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-gold font-body text-xs font-medium hover:text-gold/80 transition-colors mt-1.5 inline-block"
-            >
-              Partilhar com um amigo
-            </a>
-          </motion.div>
-        </div>
-      </div>
-
-      {/* Modal */}
-      {modalOpen && (
-        <div
-          role="dialog"
-          aria-modal="true"
-          aria-labelledby="contact-modal-title"
-          className="fixed inset-0 z-[100] flex items-center justify-center p-4"
-          style={{ background: "rgba(15, 15, 16, 0.85)" }}
-        >
-          <div
-            className="w-full max-w-2xl rounded-xl shadow-deep flex flex-col overflow-hidden"
-            style={{ background: "#F4EFE9", maxHeight: "90vh" }}
-          >
-            {/* Header */}
-            <div
-              className="px-6 py-5 flex items-center justify-between"
-              style={{ background: "#1C2A36" }}
-            >
-              <p
-                id="contact-modal-title"
-                className="font-display text-xl font-bold"
-                style={{ color: "#C9A24A" }}
-              >
-                Contacto
-              </p>
-              <button
-                type="button"
-                onClick={() => setModalOpen(false)}
-                className="text-cream/60 hover:text-cream transition-colors"
-              >
-                <X className="w-5 h-5" />
-              </button>
-            </div>
-
-            {/* Body */}
-            <div className="px-6 py-6 overflow-y-auto flex-1">
-              {/* RGPD checkbox */}
-              <label className="flex items-start gap-3 cursor-pointer mb-6">
-                <input
-                  type="checkbox"
-                  checked={rgpdAccepted}
-                  onChange={(e) => setRgpdAccepted(e.target.checked)}
-                  className="mt-1 h-4 w-4 cursor-pointer"
-                  style={{ accentColor: "#C9A24A" }}
-                />
-                <span className="font-body text-sm" style={{ color: "#1C2A36" }}>
-                  Li e aceito a{" "}
-                  <a
-                    href="/termos"
-                    className="underline hover:text-gold transition-colors"
-                    style={{ color: "#C9A24A" }}
-                  >
-                    Política de Privacidade
-                  </a>{" "}
-                  e os{" "}
-                  <a
-                    href="/termos"
-                    className="underline hover:text-gold transition-colors"
-                    style={{ color: "#C9A24A" }}
-                  >
-                    Termos e Condições
-                  </a>{" "}
-                  da WiseClean.
-                </span>
-              </label>
-
-              {/* HubSpot form */}
-              <div className={`transition-opacity duration-300 ${rgpdAccepted ? "opacity-100" : "opacity-50 pointer-events-none"}`}>
-                <div
-                  className="hs-form-frame"
-                  data-region="eu1"
-                  data-form-id="4bec4366-a2fa-48bb-b4df-4e7c7bf0cdce"
-                  data-portal-id="148359973"
-                />
-              </div>
-            </div>
+            <Mail className="w-5 h-5 text-gold" />
+            <span className="text-body-sm">wiseclean@gmail.com</span>
+          </a>
+          <div className="flex flex-col items-center gap-2 text-cream/70">
+            <Clock className="w-5 h-5 text-gold" />
+            <span className="text-body-sm">Seg–Sáb · 09:00–19:00</span>
           </div>
-        </div>
-      )}
-    </section>
-  );
-};
+        </motion.div>
+      </div>
+    </div>
+  </section>
+);
 
 export default ContactSection;

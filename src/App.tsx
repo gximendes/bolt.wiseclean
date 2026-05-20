@@ -6,7 +6,6 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import Index from "./pages/Index.tsx";
 import Coimbra from "./pages/Coimbra.tsx";
 import NotFound from "./pages/NotFound.tsx";
-import TermsGate from "./components/TermsGate";
 import CookieBanner from "./components/CookieBanner";
 
 const queryClient = new QueryClient();
@@ -23,7 +22,6 @@ const App = () => (
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
-        <TermsGate />
         <CookieBanner />
       </BrowserRouter>
     </TooltipProvider>

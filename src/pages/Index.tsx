@@ -1,30 +1,36 @@
 import Navbar from "@/components/Navbar";
 import HeroSection from "@/components/HeroSection";
-import InvisibleSection from "@/components/InvisibleSection";
-import WhyWiseCleanSection from "@/components/WhyWiseCleanSection";
+import ProvocationSection from "@/components/ProvocationSection";
+import ForWhomSection from "@/components/ForWhomSection";
+import PackagesSection from "@/components/PackagesSection";
 import ProtocolSection from "@/components/ProtocolSection";
-import TestimonialsSection from "@/components/TestimonialsSection";
+import PriceCalculator from "@/components/PriceCalculator";
+import DifferenceSection from "@/components/DifferenceSection";
 import FAQSection from "@/components/FAQSection";
-import ServicesSection from "@/components/ServicesSection";
+import TestimonialsSection from "@/components/TestimonialsSection";
 import ContactSection from "@/components/ContactSection";
 import Footer from "@/components/Footer";
 import WhatsAppButton from "@/components/WhatsAppButton";
+import CookieBanner from "@/components/CookieBanner";
 
 const Index = () => (
   <>
     <Navbar />
-    <main className="w-full overflow-x-hidden">
+    <main className="w-full overflow-x-hidden bg-cream">
       <HeroSection />
-      <InvisibleSection />
-      <WhyWiseCleanSection />
+      <ProvocationSection />
+      <ForWhomSection />
       <ProtocolSection />
+      <PackagesSection />
+      <PriceCalculator />
+      <DifferenceSection />
       <TestimonialsSection />
       <FAQSection />
-      <ServicesSection />
       <ContactSection />
     </main>
     <Footer />
     <WhatsAppButton />
+    <CookieBanner />
   </>
 );
 

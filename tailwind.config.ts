@@ -59,6 +59,8 @@ export default {
           DEFAULT: "hsl(var(--gold))",
           light: "hsl(var(--gold-light))",
           soft: "hsl(var(--gold-soft))",
+          warm: "hsl(var(--gold-warm))",
+          deep: "hsl(var(--gold-deep))",
         },
         forest: {
           DEFAULT: "hsl(var(--forest))",
@@ -68,6 +70,7 @@ export default {
         navy: {
           DEFAULT: "hsl(var(--navy))",
           deep: "hsl(var(--navy-deep))",
+          elevated: "hsl(var(--navy-elevated))",
           mist: "hsl(var(--navy-mist))",
         },
         "dark-blue": "hsl(var(--dark-blue))",
@@ -75,7 +78,21 @@ export default {
         cream: {
           DEFAULT: "hsl(var(--cream))",
           warm: "hsl(var(--cream-warm))",
+          deep: "hsl(var(--cream-deep))",
         },
+        ink: {
+          DEFAULT: "hsl(var(--ink))",
+          soft: "hsl(var(--ink-soft))",
+          muted: "hsl(var(--ink-muted))",
+        },
+        "alert-red": "hsl(var(--alert-red))",
+        "alert-red-bg": "hsl(var(--alert-red-bg))",
+        "warn-amber": "hsl(var(--warn-amber))",
+        "warn-amber-bg": "hsl(var(--warn-amber-bg))",
+        "good-green": "hsl(var(--good-green))",
+        "good-green-bg": "hsl(var(--good-green-bg))",
+        "info-blue": "hsl(var(--info-blue))",
+        "info-blue-bg": "hsl(var(--info-blue-bg))",
       },
       borderRadius: {
         lg: "var(--radius)",
